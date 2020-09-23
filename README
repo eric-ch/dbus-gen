@@ -1,0 +1,29 @@
+# DBus Go Generator
+
+DBus Go Generator, dbus-gen, is a Go code generator for creating
+bindings for DBus XML IDL definition files. It uses the text templating
+library from Go's standard libraries to control the rendering of
+bindings code.
+
+## Usage
+
+Since it is not always possible to determine the metadata needed for generating
+the Go code the dbus-gen command has a set of flags that allows passing this
+information. The two parameters that are required are the path to the IDL file
+(-i/--input flag) and the path to the code rendering template (-t/--template
+flag). There are two parameters that are optional but will result in generated
+code that will likely not compile, these being the base name for the DBus
+inteface (-b/--intf-base flag) and the package name for the generated code
+(-p/--package flag). Finally the last parameter is optional and that is the
+directory where the generated Go code file will be created (-d/--dest flag).
+
+For reference, below is the help string from dbus-gen.
+
+```
+Usage of dbus-gen:
+  -d, --dest string        destination directory for code (default ".")
+  -i, --input string       XML DBus IDL file
+  -b, --intf-base string   base name of the DBus interface (default "")
+  -p, --package string     Go package name (default "")
+  -t, --template string    code template
+```
