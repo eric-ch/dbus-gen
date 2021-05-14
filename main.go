@@ -66,7 +66,7 @@ func main() {
 		"hyphen":     Hyphen,
 	}
 
-	tmpl := template.Must(template.New("dbus-gen").Funcs(funcMap).ParseFiles(*tmplFile))
+	tmpl := template.Must(template.New(*tmplFile).Funcs(funcMap).ParseFiles(*tmplFile))
 
 	err = tmpl.Execute(output, t)
 	if err != nil {
