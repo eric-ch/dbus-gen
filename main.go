@@ -4,20 +4,18 @@ package main
 import (
 	"errors"
 	"os"
-	"path/filepath"
 	"text/template"
 
 	flag "github.com/spf13/pflag"
 )
 
-func OpenOutput(name, destDir string) (*os.File, error) {
+func OpenOutput(path string) (*os.File, error) {
 	var (
 		err    error
 		output *os.File
 	)
 
-	outPath := filepath.Join(destDir, name+".go")
-	output, err = os.OpenFile(outPath, os.O_CREATE|os.O_WRONLY, 0644)
+	output, err = os.OpenFile(path, os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		return nil, err
 	}
@@ -29,7 +27,7 @@ func main() {
 	var (
 		tmplFile = flag.StringP("template", "t", "", "code template")
 		xmlFile  = flag.StringP("input", "i", "", "XML DBus IDL file")
-		destDir  = flag.StringP("dest", "d", ".", "destination directory for code")
+		destFile  = flag.StringP("output", "o", "", "output file for code generated")
 		pkgName  = flag.StringP("package", "p", "", "go package name")
 		intfBase = flag.StringP("intf-base", "b", "", "base name of the DBus interface")
 
@@ -49,7 +47,7 @@ func main() {
 		panic(err)
 	}
 
-	output, err = OpenOutput(idl.Name, *destDir)
+	output, err = OpenOutput(*destFile)
 	if err != nil {
 		panic(err)
 	}
