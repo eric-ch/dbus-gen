@@ -63,18 +63,34 @@ type Property struct {
 	Access  string   `xml:"access,attr"`
 }
 
+type EnumValue struct {
+	XMLName xml.Name  `xml:"enumvalue"`
+	Suffix  string    `xml:"suffix,attr"`
+	Value   string    `xml:"value,attr"`
+	Comment DocString `xml:"docstring"`
+}
+
+type Enum struct {
+	XMLName xml.Name    `xml:"enum"`
+	Name    string      `xml:"name,attr"`
+	Type    string      `xml:"type,attr"`
+	Values  []EnumValue `xml:"enumvalue"`
+}
+
 type Interface struct {
 	XMLName    xml.Name   `xml:"interface"`
 	Name       string     `xml:"name,attr"`
 	Methods    []Method   `xml:"method"`
 	Signals    []Signal   `xml:"signal"`
 	Properties []Property `xml:"property"`
+	Enums      []Enum     `xml:"enum"`
 }
 
 type Node struct {
 	XMLName    xml.Name    `xml:"node"`
 	Name       string      `xml:"name,attr"`
 	Interfaces []Interface `xml:"interface"`
+	Enums      []Enum      `xml:"enum"`
 }
 
 type Idl struct {
