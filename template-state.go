@@ -13,6 +13,7 @@ type TemplateState struct {
         ObjectInitial string
         InterfaceIdx  int
         MethodIdx     int
+        PropertyIdx   int
 }
 
 func NewTemplateState(n *Node, pkg, objName, ib string) *TemplateState {
@@ -24,6 +25,7 @@ func NewTemplateState(n *Node, pkg, objName, ib string) *TemplateState {
                 ObjectInitial: Initial(objName),
                 InterfaceIdx:  0,
                 MethodIdx:     0,
+                PropertyIdx:   0,
         }
 }
 
@@ -48,6 +50,16 @@ func (t *TemplateState) GetMethod() Method {
 
 func (t *TemplateState) SetMethodIdx(i int) *TemplateState {
         t.MethodIdx = i
+
+        return t
+}
+
+func (t *TemplateState) GetProperty() Property {
+        return t.GetInterface().Properties[t.PropertyIdx]
+}
+
+func (t *TemplateState) SetPropertyIdx(i int) *TemplateState {
+        t.PropertyIdx = i
 
         return t
 }
