@@ -60,8 +60,6 @@ func CamelCase(name string, private bool) string {
 		delim = "_"
 	}
 
-	name = addSplit(name, "xen", delim)
-
 	words := strings.Split(name, delim)
 
 	for i, w := range words {
