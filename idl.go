@@ -9,7 +9,7 @@ import (
 )
 
 type DocString struct {
-	XMLName xml.Name `xml:"http://telepathy.freedesktop.org/wiki/DbusSpec#extensions-v0 docstring"`
+	XMLName xml.Name `xml:"docstring"`
 	Body    string   `xml:",innerxml"`
 }
 
