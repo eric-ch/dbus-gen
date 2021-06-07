@@ -20,52 +20,6 @@ type Arg struct {
 	Direction string   `xml:"direction,attr"`
 }
 
-var singleSigMap = map[string]string{
-	"y": "byte",
-	"b": "bool",
-	"n": "int16",
-	"q": "uint16",
-	"i": "int32",
-	"u": "uint32",
-	"x": "int64",
-	"t": "uint64",
-	"d": "float64",
-	"s": "string",
-	"o": "dbus.ObjectPath",
-	"v": "dbus.Variant",
-	"h": "unixFDIndex",
-}
-
-var doubleSigMap = map[string]string{
-	"ay": "[]byte",
-	"ai": "[]int32",
-	"au": "[]uint32",
-	"at": "[]uint64",
-	"as": "[]string",
-	"ao": "[]dbus.ObjectPath",
-}
-
-var complexSigMap = map[string]string{
-	"a{ss}":     "map[string]string",
-	"a{sv}":     "map[string]dbus.Variant",
-	"aa{ss}":    "[]map[string]string",
-	"a(sa{sv})": "map[string]map[string]dbus.Variant",
-}
-
-func (a Arg) GoType() string {
-
-	if t, ok := singleSigMap[a.Type]; ok {
-		return t
-	}
-	if t, ok := doubleSigMap[a.Type]; ok {
-		return t
-	}
-	if t, ok := complexSigMap[a.Type]; ok {
-		return t
-	}
-	return "interface{}"
-}
-
 type Method struct {
 	XMLName xml.Name  `xml:"method"`
 	Name    string    `xml:"name,attr"`
