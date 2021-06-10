@@ -62,6 +62,7 @@ func main() {
 		"camelcase":  CamelCase,
 		"underscore": Underscore,
 		"hyphen":     Hyphen,
+		"join":       Join,
 	}
 
 	tmpl := template.Must(template.New(*tmplFile).Funcs(funcMap).ParseFiles(*tmplFile))

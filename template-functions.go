@@ -109,3 +109,7 @@ func Hyphen(s string) string {
 
 	return combined
 }
+
+func Join(sep string, as []string) string {
+	return strings.Join(as, sep)
+}
