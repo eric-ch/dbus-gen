@@ -28,6 +28,7 @@ var goDoubleSigMap = map[string]string{
 
 var goComplexSigMap = map[string]string{
 	"a{ss}":     "map[string]string",
+	"a{su}":     "map[string]uint32",
 	"a{sv}":     "map[string]dbus.Variant",
 	"aa{ss}":    "[]map[string]string",
 	"aa{sv}":    "[]map[string]dbus.Variant",
